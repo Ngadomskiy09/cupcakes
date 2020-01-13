@@ -8,13 +8,13 @@
 
 session_start();
 $_SESSION['flavors'] = array(
-    "grasshopper" => "The Grasshopper",
-    "maple" => "Whiskey Maple Bacon",
-    "carrot" => "Carrot Walnut",
-    "caramel" => "Salted Caramel Cupcake",
-    "velvet" => "Red Velvet",
-    "lemon" => "Lemon Drop",
-    "tiramisu" => "Tiramisu"
+    "The Grasshopper" => "grasshopper",
+    "Whiskey Maple Bacon" => "maple",
+    "Carrot Walnut" => "carrot",
+    "Salted Caramel Cupcake" => "caramel",
+    "Red Velvet" => "velvet",
+    "Lemon Drop" => "lemon",
+    "Tiramisu" => "tiramisu"
 );
 //var_dump($_SESSION);
 ?>
@@ -53,7 +53,7 @@ $_SESSION['flavors'] = array(
 
                 foreach ($_SESSION['flavors'] as $key => $value) {
                     echo "<input id='$value' type='checkbox' name='flavors[]' value='$key'>
-                            <label for='$value'>$value</label><br> ";
+                            <label for='$value'>$key</label><br> ";
                 }
             ?>
         </div>
