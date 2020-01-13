@@ -1,3 +1,16 @@
+<?php
+session_start();
+$_SESSION['flavors'] = array(
+    "grasshopper" => "The Grasshopper",
+    "maple" => "Whiskey Maple Bacon",
+    "carrot" => "Carrot Walnut",
+    "caramel" => "Salted Caramel Cupcake",
+    "velvet" => "Red Velvet",
+    "lemon" => "Lemon Drop",
+    "tiramisu" => "Tiramisu"
+);
+//var_dump($_SESSION);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +31,7 @@
 
 <body>
     <h1>Cupcake Fundraiser</h1>
-    <form id="cupcake_form" method="get" action="confirm.php">
+    <form id="cupcake_form" method="post" action="confirm.php">
         <div class="form-group">
             <label for="cust_name">Your name: <br></label>
             <input type="text" class="form-control" id="cust_name" name="cust_name" placeholder="Please input your name">
@@ -28,20 +41,12 @@
         </div>
 
         <h4>Cupcake flavors:</h4>
-        <div id="order" class="flavors[]">
+        <div id="order">
             <?php
-                $flavors = array(
-                        "grasshopper" => "The Grasshopper",
-                        "maple" => "Whiskey Maple Bacon",
-                        "carrot" => "Carrot Walnut",
-                        "caramel" => "Salted Caramel Cupcake",
-                        "velvet" => "Red Velvet",
-                        "lemon" => "Lemon Drop",
-                        "tiramisu" => "Tiramisu"
-                );
 
-                foreach ($flavors as $key => $value) {
-                    echo "<input type='checkbox' value='$key'>$value</input><br>";
+                foreach ($_SESSION['flavors'] as $key => $value) {
+                    echo "<input id='$value' type='checkbox' name='flavors[]' value='$key'>
+                            <label for='$value'>$value</label><br> ";
                 }
             ?>
         </div>

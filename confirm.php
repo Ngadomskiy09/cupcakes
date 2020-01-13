@@ -1,4 +1,5 @@
 <?php
+session_start();
 // turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -15,34 +16,36 @@ include "cupcakeFunctions.php";
 </head>
 <body>
 <?php
-    $name = ($_GET['cust_name']);
-    //$order = ($_GET['order']);
-
     $valid = true;
 
     //validate name
-    if (validName($_GET['cust_name'])) {
-        $name = $_GET['cust_name'];
-        print "<p>$name</p>";
+    if (validName($_POST['cust_name'])) {
+        $name = $_POST['cust_name'];
+        //print "<p>$name</p>";
     } else {
         print "<p>Invalid name.</p>";
+        $valid = false;
     }
 
     //validate checkboxes
-    /*if (check($_GET['order'])) {
-        $order = $_GET['order'];
-        print "<p>$order</p>";
+    if (check($_POST['flavors'])) {
+        $order = $_POST['flavors'];
     } else {
         print "<p>Select at least one flavor.</p>";
-    }*/
+        $valid = false;
+    }
 
     //$result = mysqli_query($cnxn, $sql);
 
     if ($valid) {
         echo "<p>Thank you, $name, for your order!</p>";
         echo "<p><br>Order Summary:<br></p>";
-        //echo "<p>$order</p>";
-        echo "<p>Order Total:</p>";
+            foreach ($order as $flavor){
+                echo "<li>$flavor</li>";
+            }
+            echo "<br>";
+        $result = count($order) * 3.5;
+        printf("Order Total: %1\$.2f", $result);
 
     }
 ?>
