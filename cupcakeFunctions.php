@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * Nick Gadomskiy
+ * 1/13/20
+ * http://ngadomskiy.greenriverdev.com/IT328/cupcakes/
+ * cupcake fundraiser
+ */
+
 // name function
 function validName($string) {
     return ctype_alpha($string) AND !empty($string);

@@ -1,4 +1,12 @@
 <?php
+
+/*
+ * Nick Gadomskiy
+ * 1/13/20
+ * http://ngadomskiy.greenriverdev.com/IT328/cupcakes/
+ * cupcake fundraiser
+ */
+
 session_start();
 // turn on error reporting
 ini_set('display_errors', 1);

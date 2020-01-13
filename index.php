@@ -1,4 +1,11 @@
 <?php
+/*
+ * Nick Gadomskiy
+ * 1/13/20
+ * http://ngadomskiy.greenriverdev.com/IT328/cupcakes/
+ * cupcake fundraiser
+ */
+
 session_start();
 $_SESSION['flavors'] = array(
     "grasshopper" => "The Grasshopper",
