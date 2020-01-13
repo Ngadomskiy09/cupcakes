@@ -18,31 +18,37 @@
 
 <body>
     <h1>Cupcake Fundraiser</h1>
-    <form id="cupcake_form" action="confirm.php" method="post">
-        <div class="name">
+    <form id="cupcake_form" method="get" action="confirm.php">
+        <div class="form-group">
             <label for="cust_name">Your name: <br></label>
-            <input type="text" id="cust_name" name="cust_name" placeholder="Please input your name">
+            <input type="text" class="form-control" id="cust_name" name="cust_name" placeholder="Please input your name">
             <span class="err" id="err-name">
                 Please enter a name
             </span>
         </div>
 
         <h4>Cupcake flavors:</h4>
-        <?php
-            $flavors = array(
-                    "grasshopper" => "The Grasshopper",
-                    "maple" => "Whiskey Maple Bacon",
-                    "carrot" => "Carrot Walnut",
-                    "caramel" => "Salted Caramel Cupcake",
-                    "velvet" => "Red Velvet",
-                    "lemon" => "Lemon Drop",
-                    "tiramisu" => "Tiramisu"
-            );
+        <div id="order" class="flavors[]">
+            <?php
+                $flavors = array(
+                        "grasshopper" => "The Grasshopper",
+                        "maple" => "Whiskey Maple Bacon",
+                        "carrot" => "Carrot Walnut",
+                        "caramel" => "Salted Caramel Cupcake",
+                        "velvet" => "Red Velvet",
+                        "lemon" => "Lemon Drop",
+                        "tiramisu" => "Tiramisu"
+                );
 
-            foreach ($flavors as $key => $value) {
-                echo "<input type='checkbox' value='$key'>$value</input><br>";
-            }
-        ?>
+                foreach ($flavors as $key => $value) {
+                    echo "<input type='checkbox' value='$key'>$value</input><br>";
+                }
+            ?>
+        </div>
+
+        <span class="err" id="err-flavor">
+            Please select at least one flavor
+        </span>
 
         <!--<div class="form-check">
             <input class="form-check-input" type="checkbox" value="grasshopper" id="grasshopper" name="flavors[]">
@@ -93,10 +99,49 @@
             </label>
         </div> -->
 
+        <br>
         <button type="submit" value="submit" class="btn btn-primary">
             Order
         </button>
 
     </form>
+
+<!--<script>
+    document.getElementById("cupcake_form").onsubmit = validate;
+
+    function validate() {
+        var isValid = true;
+
+        //clear all error messages
+        var errors = document.getElementsByClassName("err");
+        for (var i = 0; i<errors.length; i++) {
+            errors[i].style.visibility = "hidden";
+        }
+
+        // check name
+        var name = document.getElementById("cust_name").value;
+        if (name == "") {
+            var errName = document.getElementById("err-name");
+            errName.style.visibility = "visible";
+            isValid = false;
+        }
+
+        var selection = document.getElementsByClassName("flavors[]");
+        var count = 0;
+        for (i = 0; i < selection.length; i++) {
+            if (selection[i].checked) {
+                count++;
+            }
+        }
+        if (count < 1) {
+            var errFlavor = document.getElementById("err-flavor");
+            errFlavor.style.visibility = "visible";
+            isValid = false;
+        }
+
+        return isValid;
+    }
+</script>-->
+
 </body>
 </html>
